@@ -43,6 +43,9 @@ select department_id,AVG(salary)
 from Employee
 GROUP BY department_id;
 q21
+select department_id,SUM(salary)
+
+
 
 
 
