@@ -1,49 +1,95 @@
-q1
+Q1
 select * from Employee;
-q2
+Q2
 select name,salary from Employee;
-q3
+Q3
 select * from Employee WHERE age>30;
-q4
+Q4
 select name from Department;
-q5
+Q5
 select * from Employee WHERE department_id=1;
-q6
+Q6
 select * from Employee WHERE name LIKE 'J%';
-q7
+Q7
 select * from Employee WHERE name LIKE '%e';
-q8
+Q8
 select * from Employee WHERE name LIKE '%a%';
-q9
+Q9
 select * from Employee WHERE LENGTH(name) = 9;
-q10
+Q10
 select * from Employee WHERE name LIKE '_o%';
-q11
+Q11
 select * from Employee WHERE YEAR(hire_date) = 2020;
-q12
+Q12
 select * from Employee WHERE YEAR(hire_date) = 1;
-q13
+Q13
 select * from Employee WHERE hire_date < '2019-01-01';
-q14
+Q14
 select * from Employee WHERE hire_date >= '2021-03-01';
-q15
+Q15
 select * from Employee WHERE hire_date >= CURDATE()- INTERVAL 2 YEAR;
-q16
+Q16
 select sum(salary) from Employee;
-q17
+Q17
 select avg(salary) from Employee;
-q18
+Q18
 select MIN(salary) from Employee;
-q19
+Q19
 select department_id,count(*)
 from Employee
 GROUP BY department_id;
-q20
+Q20
 select department_id,AVG(salary)
 from Employee
 GROUP BY department_id;
-q21
+Q21
 select department_id,SUM(salary)
+from Employee
+GROUP BY department_id;
+Q22
+select department_id,AVG(salary)
+from Employee
+GROUP BY department_id;
+Q23
+select YEAR(hire_data),count(*)
+from Employee
+GROUP BY YEAR(hire_data);
+Q24
+select department_id,MAX(salary)
+from Employee
+GROUP BY department_id;
+Q25
+select department_id
+FROM Employee
+GROUP BY department_id
+ORDER BY AVG(salary) DESC
+LIMIT 1;
+Q26
+select department_id
+FROM Employee
+GROUP BY department_id
+HAVING COUNT(*) > 2;
+Q27
+select department_id
+FROM Employee
+GROUP BY department_id
+HAVUNG AVG(salary) > 55000;
+Q28
+select YEAR(hire_date)
+FROM Employee
+GROUP BY YEAR(hire_date)
+HAVING count(*) > 1;
+Q29
+select department_id
+FROM Employee
+GROUP BY department_id
+HAVING SUM(salary) < 100000;
+Q30
+select department_id
+FROM Employee
+GROUP BY department_id
+HAVING MAX(salary) > 75000;
+
 
 
 
