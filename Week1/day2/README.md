@@ -1,105 +1,193 @@
-
-# Week 1 - Day 2 SQL Practice
+# Employee SQL Practice Queries
 
 ## 📌 Overview
-This folder contains SQL practice queries from Question 1 to Question 25 using the `Employees` table.
+This project contains SQL practice queries using an `Employees` table.  
+It covers important SQL concepts for beginners and interview preparation.
 
-Topics Covered:
+## 📚 Topics Covered
 - SELECT
 - WHERE
 - GROUP BY
 - HAVING
 - TOP / LIMIT
+- DISTINCT
+- Comparison Operators
+- Logical Operators
+- IN & NOT IN
+- BETWEEN
+- LIKE Operator
 
 ---
 
-# 🗂️ Files Included
+# 🗂️ Table Creation
 
-- `queries.sql` → Contains SQL practice queries
-- `README.md` → Documentation for Day 2 practice
-
----
-
-# 📚 Topics Practiced
-
-## 1️⃣ SELECT Queries
-Basic data retrieval queries.
-
-Examples:
-- Display all employee details
-- Display employee names and salaries
-- Display employees from IT department
+```sql
+CREATE TABLE Employees (
+    emp_id INT,
+    emp_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT,
+    city VARCHAR(50),
+    experience INT
+);
+```
 
 ---
 
-## 2️⃣ WHERE Clause
-Filtering records using conditions.
+# 📥 Sample Data
 
-Examples:
-- Salary greater than 70000
-- Employees from Hyderabad
-- Experience less than 4 years
+```sql
+INSERT INTO Employees VALUES
+(101, 'Rahul', 'IT', 75000, 'Hyderabad', 5),
+(102, 'Anjali', 'HR', 45000, 'Chennai', 3),
+(103, 'Kiran', 'IT', 82000, 'Bangalore', 6),
+(104, 'Sneha', 'Finance', 67000, 'Hyderabad', 4),
+(105, 'Aman', 'HR', 39000, 'Pune', 2),
+(106, 'Ravi', 'Finance', 91000, 'Mumbai', 8),
+(107, 'Divya', 'IT', 55000, 'Chennai', 3),
+(108, 'Meena', 'Sales', 48000, 'Bangalore', 2),
+(109, 'Arjun', 'Sales', 61000, 'Hyderabad', 5),
+(110, 'Pooja', 'IT', 73000, 'Mumbai', 4),
+(111, 'Vikas', 'HR', 52000, 'Pune', 3),
+(112, 'Nisha', 'Finance', 88000, 'Bangalore', 7),
+(113, 'Tarun', 'Sales', 46000, 'Chennai', 2),
+(114, 'Kavya', 'IT', 97000, 'Hyderabad', 9),
+(115, 'Manoj', 'Finance', 58000, 'Mumbai', 4);
+```
+
+---
+
+# 📝 SQL Practice Questions
+
+## 1️⃣ SELECT
+- Display all employee details.
+- Display only employee names and salaries.
+- Display employee names and departments.
+- Display all employees from the IT department.
+- Display employee names and experience.
+
+---
+
+## 2️⃣ WHERE
+- Find employees with salary greater than 70000.
+- Find employees working in Hyderabad.
+- Find employees with experience less than 4 years.
+- Find employees from Finance department.
+- Find employees whose salary is equal to 52000.
 
 ---
 
 ## 3️⃣ GROUP BY
-Grouping rows and aggregate functions.
-
-Examples:
-- Total salary department-wise
-- Average salary department-wise
-- Employee count city-wise
+- Find total salary department-wise.
+- Find average salary in each department.
+- Count employees in each city.
+- Find maximum salary in each department.
+- Find minimum experience department-wise.
 
 ---
 
-## 4️⃣ HAVING Clause
-Filtering grouped data.
-
-Examples:
-- Departments having more than 3 employees
-- Cities having more than 2 employees
+## 4️⃣ HAVING
+- Find departments having more than 3 employees.
+- Find departments where average salary is greater than 60000.
+- Find cities having more than 2 employees.
+- Find departments where total salary is greater than 200000.
+- Find departments where maximum salary is above 90000.
 
 ---
 
 ## 5️⃣ TOP / LIMIT
-Retrieving top records.
-
 > MySQL uses `LIMIT` instead of `TOP`
 
-Examples:
-- Top 5 highest paid employees
-- Top 3 experienced employees
+- Display top 5 highest paid employees.
+- Display top 3 employees with highest experience.
+- Display top 2 salaries from Finance department.
+- Display top 4 employees from Hyderabad.
+- Display top 1 highest salary employee.
+
+---
+
+## 6️⃣ DISTINCT
+- Display distinct department names.
+- Display distinct city names.
+- Display distinct salary values.
+- Display distinct combinations of department and city.
+- Display distinct experience values.
+
+---
+
+## 7️⃣ COMPARISON OPERATORS
+- Find employees with salary >= 80000.
+- Find employees with experience <= 3.
+- Find employees whose salary <> 45000.
+- Find employees with salary < 50000.
+- Find employees with experience > 5.
+
+---
+
+## 8️⃣ LOGICAL OPERATORS
+- Find employees from IT department AND salary greater than 70000.
+- Find employees from Hyderabad OR Bangalore.
+- Find employees from HR department AND experience less than 3.
+- Find employees with salary greater than 60000 OR experience greater than 6.
+- Find employees NOT from Sales department.
+
+---
+
+## 9️⃣ IN AND NOT IN
+- Find employees working in ('Hyderabad', 'Mumbai').
+- Find employees whose department IN ('IT', 'Finance').
+- Find employees whose city NOT IN ('Chennai', 'Pune').
+- Find employees whose salary IN (45000, 75000, 91000).
+- Find employees whose department NOT IN ('HR', 'Sales').
+
+---
+
+## 🔟 BETWEEN
+- Find employees with salary BETWEEN 50000 AND 80000.
+- Find employees with experience BETWEEN 3 AND 6.
+- Find employees whose emp_id BETWEEN 105 AND 112.
+- Find employees with salary NOT BETWEEN 40000 AND 60000.
+- Find employees with experience BETWEEN 2 AND 4.
+
+---
+
+## 1️⃣1️⃣ LIKE OPERATOR
+- Find employees whose names start with 'R'.
+- Find employees whose names end with 'a'.
+- Find employees whose names contain 'v'.
+- Find employees whose city starts with 'B'.
+- Find employees whose department ends with 's'.
 
 ---
 
 # ▶️ How to Run
 
-1. Open MySQL Workbench or any SQL editor.
-2. Create the `Employees` table.
-3. Insert sample data.
-4. Run queries from `queries.sql`.
+1. Create the table.
+2. Insert the sample data.
+3. Run the SQL queries one by one.
+4. Observe the output.
 
 ---
 
 # 🎯 Learning Outcome
-
-After completing these queries, you will understand:
-- Data retrieval using SELECT
-- Filtering using WHERE
-- Aggregate functions
-- Grouping data
-- Using HAVING clause
-- Sorting and limiting records
+After practicing these queries, you will understand:
+- Data Retrieval
+- Filtering Records
+- Aggregate Functions
+- Grouping Data
+- Pattern Matching
+- Logical Conditions in SQL
 
 ---
 
 # 💻 Suitable For
 - SQL Beginners
+- College Students
 - DBMS Lab Practice
-- College Assignments
 - Interview Preparation
+- MySQL Practice
 
 ---
 
 # 🚀 Author
-SQL Practice - Week 1 Day 2
+SQL Practice Collection for learning and improving query writing skills.
