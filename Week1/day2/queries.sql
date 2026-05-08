@@ -1,193 +1,149 @@
-# Employee SQL Practice Queries
+/*
+=========================================
+Week 1 - Day 2 SQL Practice
+Questions 1 to 25
+=========================================
+*/
 
-## 📌 Overview
-This project contains SQL practice queries using an `Employees` table.  
-It covers important SQL concepts for beginners and interview preparation.
+-- =========================================
+-- SELECT
+-- =========================================
 
-## 📚 Topics Covered
-- SELECT
-- WHERE
-- GROUP BY
-- HAVING
-- TOP / LIMIT
-- DISTINCT
-- Comparison Operators
-- Logical Operators
-- IN & NOT IN
-- BETWEEN
-- LIKE Operator
+-- 1. Display all employee details
+SELECT * FROM Employees;
 
----
+-- 2. Display only employee names and salaries
+SELECT emp_name, salary FROM Employees;
 
-# 🗂️ Table Creation
+-- 3. Display employee names and departments
+SELECT emp_name, department FROM Employees;
 
-```sql
-CREATE TABLE Employees (
-    emp_id INT,
-    emp_name VARCHAR(50),
-    department VARCHAR(50),
-    salary INT,
-    city VARCHAR(50),
-    experience INT
-);
-```
+-- 4. Display all employees from the IT department
+SELECT * FROM Employees
+WHERE department = 'IT';
 
----
+-- 5. Display employee names and experience
+SELECT emp_name, experience FROM Employees;
 
-# 📥 Sample Data
 
-```sql
-INSERT INTO Employees VALUES
-(101, 'Rahul', 'IT', 75000, 'Hyderabad', 5),
-(102, 'Anjali', 'HR', 45000, 'Chennai', 3),
-(103, 'Kiran', 'IT', 82000, 'Bangalore', 6),
-(104, 'Sneha', 'Finance', 67000, 'Hyderabad', 4),
-(105, 'Aman', 'HR', 39000, 'Pune', 2),
-(106, 'Ravi', 'Finance', 91000, 'Mumbai', 8),
-(107, 'Divya', 'IT', 55000, 'Chennai', 3),
-(108, 'Meena', 'Sales', 48000, 'Bangalore', 2),
-(109, 'Arjun', 'Sales', 61000, 'Hyderabad', 5),
-(110, 'Pooja', 'IT', 73000, 'Mumbai', 4),
-(111, 'Vikas', 'HR', 52000, 'Pune', 3),
-(112, 'Nisha', 'Finance', 88000, 'Bangalore', 7),
-(113, 'Tarun', 'Sales', 46000, 'Chennai', 2),
-(114, 'Kavya', 'IT', 97000, 'Hyderabad', 9),
-(115, 'Manoj', 'Finance', 58000, 'Mumbai', 4);
-```
+-- =========================================
+-- WHERE
+-- =========================================
 
----
+-- 6. Find employees with salary greater than 70000
+SELECT * FROM Employees
+WHERE salary > 70000;
 
-# 📝 SQL Practice Questions
+-- 7. Find employees working in Hyderabad
+SELECT * FROM Employees
+WHERE city = 'Hyderabad';
 
-## 1️⃣ SELECT
-- Display all employee details.
-- Display only employee names and salaries.
-- Display employee names and departments.
-- Display all employees from the IT department.
-- Display employee names and experience.
+-- 8. Find employees with experience less than 4 years
+SELECT * FROM Employees
+WHERE experience < 4;
 
----
+-- 9. Find employees from Finance department
+SELECT * FROM Employees
+WHERE department = 'Finance';
 
-## 2️⃣ WHERE
-- Find employees with salary greater than 70000.
-- Find employees working in Hyderabad.
-- Find employees with experience less than 4 years.
-- Find employees from Finance department.
-- Find employees whose salary is equal to 52000.
+-- 10. Find employees whose salary is equal to 52000
+SELECT * FROM Employees
+WHERE salary = 52000;
 
----
 
-## 3️⃣ GROUP BY
-- Find total salary department-wise.
-- Find average salary in each department.
-- Count employees in each city.
-- Find maximum salary in each department.
-- Find minimum experience department-wise.
+-- =========================================
+-- GROUP BY
+-- =========================================
 
----
+-- 11. Find total salary department-wise
+SELECT department, SUM(salary) AS total_salary
+FROM Employees
+GROUP BY department;
 
-## 4️⃣ HAVING
-- Find departments having more than 3 employees.
-- Find departments where average salary is greater than 60000.
-- Find cities having more than 2 employees.
-- Find departments where total salary is greater than 200000.
-- Find departments where maximum salary is above 90000.
+-- 12. Find average salary in each department
+SELECT department, AVG(salary) AS avg_salary
+FROM Employees
+GROUP BY department;
 
----
+-- 13. Count employees in each city
+SELECT city, COUNT(*) AS employee_count
+FROM Employees
+GROUP BY city;
 
-## 5️⃣ TOP / LIMIT
-> MySQL uses `LIMIT` instead of `TOP`
+-- 14. Find maximum salary in each department
+SELECT department, MAX(salary) AS max_salary
+FROM Employees
+GROUP BY department;
 
-- Display top 5 highest paid employees.
-- Display top 3 employees with highest experience.
-- Display top 2 salaries from Finance department.
-- Display top 4 employees from Hyderabad.
-- Display top 1 highest salary employee.
+-- 15. Find minimum experience department-wise
+SELECT department, MIN(experience) AS min_experience
+FROM Employees
+GROUP BY department;
 
----
 
-## 6️⃣ DISTINCT
-- Display distinct department names.
-- Display distinct city names.
-- Display distinct salary values.
-- Display distinct combinations of department and city.
-- Display distinct experience values.
+-- =========================================
+-- HAVING
+-- =========================================
 
----
+-- 16. Find departments having more than 3 employees
+SELECT department, COUNT(*) AS total_employees
+FROM Employees
+GROUP BY department
+HAVING COUNT(*) > 3;
 
-## 7️⃣ COMPARISON OPERATORS
-- Find employees with salary >= 80000.
-- Find employees with experience <= 3.
-- Find employees whose salary <> 45000.
-- Find employees with salary < 50000.
-- Find employees with experience > 5.
+-- 17. Find departments where average salary is greater than 60000
+SELECT department, AVG(salary) AS avg_salary
+FROM Employees
+GROUP BY department
+HAVING AVG(salary) > 60000;
 
----
+-- 18. Find cities having more than 2 employees
+SELECT city, COUNT(*) AS total_employees
+FROM Employees
+GROUP BY city
+HAVING COUNT(*) > 2;
 
-## 8️⃣ LOGICAL OPERATORS
-- Find employees from IT department AND salary greater than 70000.
-- Find employees from Hyderabad OR Bangalore.
-- Find employees from HR department AND experience less than 3.
-- Find employees with salary greater than 60000 OR experience greater than 6.
-- Find employees NOT from Sales department.
+-- 19. Find departments where total salary is greater than 200000
+SELECT department, SUM(salary) AS total_salary
+FROM Employees
+GROUP BY department
+HAVING SUM(salary) > 200000;
 
----
+-- 20. Find departments where maximum salary is above 90000
+SELECT department, MAX(salary) AS max_salary
+FROM Employees
+GROUP BY department
+HAVING MAX(salary) > 90000;
 
-## 9️⃣ IN AND NOT IN
-- Find employees working in ('Hyderabad', 'Mumbai').
-- Find employees whose department IN ('IT', 'Finance').
-- Find employees whose city NOT IN ('Chennai', 'Pune').
-- Find employees whose salary IN (45000, 75000, 91000).
-- Find employees whose department NOT IN ('HR', 'Sales').
 
----
+-- =========================================
+-- TOP / LIMIT
+-- =========================================
+-- NOTE:
+-- MySQL uses LIMIT instead of TOP
 
-## 🔟 BETWEEN
-- Find employees with salary BETWEEN 50000 AND 80000.
-- Find employees with experience BETWEEN 3 AND 6.
-- Find employees whose emp_id BETWEEN 105 AND 112.
-- Find employees with salary NOT BETWEEN 40000 AND 60000.
-- Find employees with experience BETWEEN 2 AND 4.
+-- 21. Display top 5 highest paid employees
+SELECT * FROM Employees
+ORDER BY salary DESC
+LIMIT 5;
 
----
+-- 22. Display top 3 employees with highest experience
+SELECT * FROM Employees
+ORDER BY experience DESC
+LIMIT 3;
 
-## 1️⃣1️⃣ LIKE OPERATOR
-- Find employees whose names start with 'R'.
-- Find employees whose names end with 'a'.
-- Find employees whose names contain 'v'.
-- Find employees whose city starts with 'B'.
-- Find employees whose department ends with 's'.
+-- 23. Display top 2 salaries from Finance department
+SELECT * FROM Employees
+WHERE department = 'Finance'
+ORDER BY salary DESC
+LIMIT 2;
 
----
+-- 24. Display top 4 employees from Hyderabad
+SELECT * FROM Employees
+WHERE city = 'Hyderabad'
+LIMIT 4;
 
-# ▶️ How to Run
-
-1. Create the table.
-2. Insert the sample data.
-3. Run the SQL queries one by one.
-4. Observe the output.
-
----
-
-# 🎯 Learning Outcome
-After practicing these queries, you will understand:
-- Data Retrieval
-- Filtering Records
-- Aggregate Functions
-- Grouping Data
-- Pattern Matching
-- Logical Conditions in SQL
-
----
-
-# 💻 Suitable For
-- SQL Beginners
-- College Students
-- DBMS Lab Practice
-- Interview Preparation
-- MySQL Practice
-
----
-
-# 🚀 Author
-SQL Practice Collection for learning and improving query writing skills.
+-- 25. Display top 1 highest salary employee
+SELECT * FROM Employees
+ORDER BY salary DESC
+LIMIT 1;
