@@ -1,8 +1,4 @@
--- =========================================
--- SELECT
--- =========================================
 
--- 1. Display all employee details
 SELECT * FROM Employees;
 
 -- 2. Display only employee names and salaries
@@ -19,9 +15,6 @@ WHERE department = 'IT';
 SELECT emp_name, experience FROM Employees;
 
 
--- =========================================
--- WHERE
--- =========================================
 
 -- 6. Find employees with salary greater than 70000
 SELECT * FROM Employees
@@ -44,9 +37,6 @@ SELECT * FROM Employees
 WHERE salary = 52000;
 
 
--- =========================================
--- GROUP BY
--- =========================================
 
 -- 11. Find total salary department-wise
 SELECT department, SUM(salary) AS total_salary
@@ -73,10 +63,6 @@ SELECT department, MIN(experience) AS min_experience
 FROM Employees
 GROUP BY department;
 
-
--- =========================================
--- HAVING
--- =========================================
 
 -- 16. Find departments having more than 3 employees
 SELECT department, COUNT(*) AS total_employees
@@ -109,12 +95,6 @@ GROUP BY department
 HAVING MAX(salary) > 90000;
 
 
--- =========================================
--- TOP
--- =========================================
--- NOTE:
--- MySQL uses LIMIT instead of TOP
-
 -- 21. Display top 5 highest paid employees
 SELECT * FROM Employees
 ORDER BY salary DESC
@@ -142,9 +122,6 @@ ORDER BY salary DESC
 LIMIT 1;
 
 
--- =========================================
--- DISTINCT
--- =========================================
 
 -- 26. Display distinct department names
 SELECT DISTINCT department FROM Employees;
@@ -162,9 +139,6 @@ SELECT DISTINCT department, city FROM Employees;
 SELECT DISTINCT experience FROM Employees;
 
 
--- =========================================
--- COMPARISON OPERATORS
--- =========================================
 
 -- 31. Find employees with salary >= 80000
 SELECT * FROM Employees
@@ -187,9 +161,7 @@ SELECT * FROM Employees
 WHERE experience > 5;
 
 
--- =========================================
--- LOGICAL OPERATORS
--- =========================================
+
 
 -- 36. Find employees from IT department AND salary greater than 70000
 SELECT * FROM Employees
@@ -212,9 +184,6 @@ SELECT * FROM Employees
 WHERE department <> 'Sales';
 
 
--- =========================================
--- IN AND NOT IN
--- =========================================
 
 -- 41. Find employees working in ('Hyderabad', 'Mumbai')
 SELECT * FROM Employees
@@ -237,9 +206,6 @@ SELECT * FROM Employees
 WHERE department NOT IN ('HR', 'Sales');
 
 
--- =========================================
--- BETWEEN
--- =========================================
 
 -- 46. Find employees with salary BETWEEN 50000 AND 80000
 SELECT * FROM Employees
@@ -262,9 +228,7 @@ SELECT * FROM Employees
 WHERE experience BETWEEN 2 AND 4;
 
 
--- =========================================
--- LIKE OPERATOR
--- =========================================
+
 
 -- 51. Find employees whose names start with 'R'
 SELECT * FROM Employees
