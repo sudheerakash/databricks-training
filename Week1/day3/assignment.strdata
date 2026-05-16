@@ -44,4 +44,108 @@ TIMESTAMPDIFF(year,joining_date,curdate()) as experience,
 from employee_payments;
 
 //question2
+select order_id,
+upper(customer_name)
+from orders_delivery;
+
+select order_id,
+datediff(delivery_date,order_date) as datedifference
+from orders_delivery;
+
+select order_id,
+ifnull(delivery_date,curdate())as finaldelivery
+from orders_delivery;
+
+select order_id,
+truncate(order_amount,1) as truncked
+from orders_delivery;
+
+//Use case 
+select order_id,
+ case
+   when datediff(delivery_date,order_date)=0
+then 'same_day'
+   
+   when datediff(delivery_date,order_date)>3
+then 'delayed'
+
+
+   else 'pending'
+   end as delivery_status
+from orders_delivery;
+
+//   QUESTION 3
+select *
+from customer_spending;
+
+select cust_id,
+concat(upper(left(cust_name,1)),lower(substring(cust_name,2)) )as customer
+from customer_spending;
+
+select cust_id,
+monthname(purchase_date)
+from  customer_spending;
+
+select cust_id,
+round(purchase_amount) as rounded
+from customer_spending;
+
+select cust_id,
+abs(purchase_amount) as absolute
+from customer_spending;
+
+//usecase
+select cust_id,
+   case
+      when purchase_amount>15000
+      then 'high spender'
+      
+      when purchase_amount between 8000 and 15000
+      then 'medium'
+      
+      else 'low'
+      end as customer_spendings
+from customer_spending;
+
+//QUESTION 4
+select *
+from subscriptions;
+
+select user_id,user_email,
+substring_index(user_email,'@',-1) as emaildomain
+from subscriptions;
+
+select user_id,
+timestampdiff(month,start_date,end_date) as duration
+from subscriptions;
+
+select user_id,
+format(subscription_fee,2)as formatted
+from subscriptions;
+
+select user_id,user_email,
+datediff(end_date,curdate())as remaining_days
+from subscriptions;
+
+
+select user_id,user_email,
+
+case 
+   when end_date>=curdate()+interval 30 day
+   then 'active'
+   
+   when end_date between curdate() and curdate()+interval 30 day
+   then 'expiring soon'
+   
+   else 'expired'
+   end as subscription_status
+   
+   from subscriptions;
+
+//QUESTION 5
+
+
+
+
+
 
