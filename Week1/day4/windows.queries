@@ -1,1 +1,46 @@
+//ROW_NUMBER
+
+select * from employees;
+
+1.	Assign a unique row number to all employees based on salary (highest first). 
+SELECT *,
+ROW_NUMBER() OVER(ORDER BY salary DESC) AS rownumber
+FROM employees;
+
+2.	Assign row numbers to employees within each department based on salary descending. 
+select *,row_number() over(partition by department order by salary desc) as rownumber
+from employees;
+
+3.	Assign row numbers based on employee joining date (latest first). 
+select *,
+row_number() over (order by join_date desc) as rownumber
+from employees;
+
+4.	Assign row numbers within each department based on earliest joining date. 
+select *,
+row_number() over(partition by department order by join_date desc) as rownumber
+from employees;
+
+5.	Assign row numbers to orders based on order date. 
+select *,
+row_number() over(order by join_date) as row_num
+from employees;
+
+6.	Assign row numbers to orders within each city based on order amount (highest first). 
+select *,
+row_number() over(partition by department order by join_date desc) as rownumber
+from employees;
+
+7.	Assign row numbers to employees based on salary (lowest first). 
+select *,
+row_number() over( order by salary asc) as rownumber
+from employees;
+
+8.	Assign row numbers within department for employees based on name alphabetically. 
+select *,
+row_number() over(partition by department order by emp_name asc) as rownumber
+from employees;
+
+
+
 
