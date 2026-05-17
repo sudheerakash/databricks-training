@@ -41,6 +41,56 @@ select *,
 row_number() over(partition by department order by emp_name asc) as rownumber
 from employees;
 
+//RANK()
+select * from employees;
+
+9.	Rank all employees based on salary (highest first). 
+select *,
+rank() over (order by salary desc)as ranknumber
+from employees;
+
+10.	Rank employees within each department based on salary. 
+select *,
+rank() over (partition by department order by salary ) as ranks
+from employees;
+
+11.	Rank employees based on joining date (latest gets rank 1). 
+select *,
+rank() over(order by join_date desc) as ranked
+from employees;
+
+12.	Rank orders based on order amount (highest first). 
+select *,
+rank()over(order by salary desc) as ranker
+from employees;
+
+13.	Rank orders within each city based on order amount. 
+select *,
+rank() over(partition by department
+order by join_date) as rankeds
+from employees;
+
+14.	Rank employees within department based on salary (lowest first). 
+select *,
+rank() over(partition by department order by salary asc) as low
+from employees;
+
+15.	Rank employees based on name alphabetically. 
+select *,
+rank() over(order by emp_name desc) as rankeddd
+from employees;
+
+16.	Rank orders within each city based on order date
+select *,
+rank() over(partition by department
+order by join_date) as rankeds
+from employees;
+
+
+
+
+
+
 
 
 
