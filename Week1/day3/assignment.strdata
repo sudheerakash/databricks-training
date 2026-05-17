@@ -143,6 +143,188 @@ case
    from subscriptions;
 
 //QUESTION 5
+SELECT 
+    loan_id,
+    
+    UPPER(customer_name) AS customer_name,
+    
+    loan_amount,
+    
+    interest_rate,
+    
+    ROUND(
+        (loan_amount * (interest_rate/100/12) * 
+        POWER(1 + (interest_rate/100/12), 12*5)) /
+        (POWER(1 + (interest_rate/100/12), 12*5) - 1)
+    ) AS emi,
+    
+    ROUND(
+        loan_amount * POWER((1 + interest_rate/100), 1/12.0) - loan_amount,
+        2
+    ) AS monthly_interest,
+    
+    TIMESTAMPDIFF(YEAR, loan_start, CURDATE()) AS years_since_loan,
+    
+    CASE
+        WHEN interest_rate > 9 THEN 'High Risk'
+        WHEN interest_rate BETWEEN 8 AND 9 THEN 'Medium Risk'
+        ELSE 'Low Risk'
+    END AS risk_category
+
+FROM loan_details;
+
+//QUESTION 6
+SELECT 
+    emp_id,
+    
+    LOWER(emp_name) AS employee_name,
+    
+    total_days,
+    
+    present_days,
+    
+    ROUND((present_days * 100.0) / total_days, 2) AS attendance_percentage,
+    
+    MONTHNAME(record_date) AS month_name,
+    
+    (total_days - present_days) AS absent_days,
+    
+    CASE
+        WHEN (present_days * 100.0) / total_days >= 90 
+            THEN 'Excellent'
+            
+        WHEN (present_days * 100.0) / total_days BETWEEN 75 AND 89 
+            THEN 'Average'
+            
+        ELSE 'Poor'
+    END AS performance_status
+
+FROM attendance;
+
+//QUESTION 7
+SELECT 
+    product_id,
+    
+    CONCAT(
+        UPPER(LEFT(product_name,1)),
+        LOWER(SUBSTRING(product_name,2))
+    ) AS product_name,
+    
+    mrp,
+    
+    selling_price,
+    
+    ABS(mrp - selling_price) AS discount_amount,
+    
+    ROUND(((mrp - selling_price) / mrp) * 100, 2) AS discount_percentage,
+    
+    DAYNAME(sale_date) AS sale_day,
+    
+    CASE
+        WHEN selling_price < mrp 
+            THEN 'Valid Discount'
+            
+        WHEN selling_price > mrp 
+            THEN 'Overpriced'
+            
+        ELSE 'No Discount'
+    END AS discount_status
+
+FROM product_sales;
+
+//QUESTION 8
+SELECT 
+    policy_id,
+    
+    UPPER(holder_name) AS holder_name,
+    
+    ROUND(premium_amount) AS rounded_premium,
+    
+    TIMESTAMPDIFF(YEAR, policy_start, policy_end) AS policy_duration_years,
+    
+    DATEDIFF(policy_end, CURDATE()) AS remaining_days,
+    
+    CASE
+        WHEN policy_end < CURDATE() 
+            THEN 'Expired'
+            
+        WHEN TIMESTAMPDIFF(YEAR, policy_start, policy_end) >= 3 
+            THEN 'Long Term'
+            
+        ELSE 'Mid Term'
+    END AS policy_status
+
+FROM insurance_policies;
+
+//QUESTION 9
+SELECT 
+    emp_id,
+    
+    LOWER(emp_name) AS employee_name,
+    
+    current_salary,
+    
+    rating,
+    
+    TIMESTAMPDIFF(YEAR, last_hike, CURDATE()) AS years_since_last_hike,
+    
+    CASE
+        WHEN rating = 5 THEN current_salary * 0.20
+        WHEN rating = 4 THEN current_salary * 0.10
+        ELSE 0
+    END AS increment_amount,
+    
+    ROUND(
+        current_salary +
+        CASE
+            WHEN rating = 5 THEN current_salary * 0.20
+            WHEN rating = 4 THEN current_salary * 0.10
+            ELSE 0
+        END
+    ) AS new_salary,
+    
+    CASE
+        WHEN rating = 5 THEN 'High Increment'
+        WHEN rating = 4 THEN 'Moderate'
+        ELSE 'No Increment'
+    END AS increment_status
+
+FROM salary_revision;
+
+//QUESTION 10
+SELECT 
+    account_id,
+    
+    customer_name,
+    
+    ABS(balance) AS absolute_balance,
+    
+    DATEDIFF(CURDATE(), last_transaction) AS days_since_last_transaction,
+    
+    CONCAT(
+        UPPER(LEFT(branch,1)),
+        LOWER(SUBSTRING(branch,2))
+    ) AS branch_name,
+    
+    SIGN(balance) AS balance_sign,
+    
+    CASE
+        WHEN balance < 0 
+            THEN 'Overdrawn'
+            
+        WHEN DATEDIFF(CURDATE(), last_transaction) > 365 
+            THEN 'Dormant'
+            
+        ELSE 'Active'
+    END AS account_status
+
+FROM bank_accounts;
+
+
+
+
+
+
 
 
 
