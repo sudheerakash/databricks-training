@@ -86,6 +86,39 @@ rank() over(partition by department
 order by join_date) as rankeds
 from employees;
 
+//DENSE_RANK()
+select * from employees;
+
+select *,
+dense_rank() over (order by salary desc) from employees;
+
+select *,
+dense_rank() over(partition by department order by salary) as ranked
+from employees;
+
+select *,
+dense_rank() over(order by join_date) as ranked
+from employees;
+
+select *,
+dense_rank() over( order by salary) as ranked
+from employees;
+
+select *,
+dense_rank() over(partition by department order by salary) as ranked
+from employees;
+
+select *,
+dense_rank() over( order by salary asc) as ranked
+from employees;
+
+select *,
+dense_rank() over(partition by department order by join_date) as ranked
+from employees;
+
+select *,
+dense_rank() over( order by join_date) as ranked
+from employees;
 
 
 
