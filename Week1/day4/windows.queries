@@ -1,4 +1,4 @@
-//ROW_NUMBER
+//ROW_NUMBER()
 
 select * from employees;
 
