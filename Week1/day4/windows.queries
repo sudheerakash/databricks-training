@@ -3,11 +3,13 @@
 select * from employees;
 
 1.	Assign a unique row number to all employees based on salary (highest first). 
+
 SELECT *,
 ROW_NUMBER() OVER(ORDER BY salary DESC) AS rownumber
 FROM employees;
 
 2.	Assign row numbers to employees within each department based on salary descending. 
+
 select *,row_number() over(partition by department order by salary desc) as rownumber
 from employees;
 
