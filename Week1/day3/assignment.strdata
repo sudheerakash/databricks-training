@@ -1,4 +1,4 @@
-//question1
+//question 1
 select emp_id,
 concat(upper(left,emp_name,1)),LOWER(substring(emp_name,2)) as proper_case_name
 from employee_payments;
