@@ -1,5 +1,4 @@
 //ROW_NUMBER()
-
 select * from employees;
 
 1.	Assign a unique row number to all employees based on salary (highest first). 
