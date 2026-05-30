@@ -117,6 +117,7 @@ select *,
 dense_rank() over(partition by department order by join_date) as ranked
 from employees;
 
+
 select *,
 dense_rank() over( order by join_date) as ranked
 from employees;
