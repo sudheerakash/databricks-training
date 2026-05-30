@@ -93,6 +93,7 @@ select * from employees;
 select *,
 dense_rank() over (order by salary desc) from employees;
 
+
 select *,
 dense_rank() over(partition by department order by salary) as ranked
 from employees;
